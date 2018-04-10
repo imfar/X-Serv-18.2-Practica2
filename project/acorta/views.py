@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .models import Urls
 from django.views.decorators.csrf import csrf_exempt
 import sys
+from django.db import IntegrityError
 
 
 FORMULARIO = """
@@ -86,7 +87,7 @@ def root_page(request):
                 num = len(Urls.objects.all())
                 url_acort = acortar_url(num)
                 try:
-                    new_url = Urls(orig=url, acort=url_acort)
+                    new_url = Urls(orig=None, acort=None)
                     new_url.save(force_insert=True)  # add url
                 except IntegrityError:
                     htmlAnswer = "<html><body><h1>ERROR 404 NOT FOUND</h1>\
