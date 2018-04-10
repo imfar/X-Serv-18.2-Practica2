@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .models import Urls
 from django.views.decorators.csrf import csrf_exempt
 import sys
+from django.db import IntegrityError
 
 
 FORMULARIO = """
